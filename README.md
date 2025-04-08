@@ -1,2 +1,2 @@
 # os-deploy
-KEA IT-Teknolog - 4. semeste afsluttende projekt
+KEA IT-Teknolog - 4. semester afsluttende projekt
