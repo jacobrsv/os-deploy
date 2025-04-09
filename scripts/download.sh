@@ -40,7 +40,7 @@ curl -s $URL/image/win11.ntfs.zst2 | zstd --decompress --stdout | pv --rate --ti
 sync
 
 echo "Creating EFI boot entry"
-efibootmgr --create --disk $DISK --part 1 --label "Windows Boot Manager" --loader "\EFI\Microsoft\Boot\bootmgfw.efi"
+#efibootmgr --create --disk $DISK --part 1 --label "Windows Boot Manager" --loader "\EFI\Microsoft\Boot\bootmgfw.efi"
 echo ""
 echo "Done!"
 echo ""
