@@ -173,4 +173,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 image/win11.ntfs.zst*
-
+alpine_iso/os-deploy-USB*
