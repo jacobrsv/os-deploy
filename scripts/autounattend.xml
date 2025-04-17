@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
-	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-DK&Keyboard=00020409&GeoLocation=61&ProcessorArchitecture=amd64&BypassRequirementsCheck=true&ComputerNameMode=Script&ComputerNameScript=%23+Finder+computerens+serienummer+og+tilf%C3%B8jer+en+prefix%0D%0A%23+f.eks+virksomhedsnavn-PF1S604Y%0D%0Areturn+%22CONTOSE-%24%28Get-CimInstance+-ClassName+Win32_BIOS+%7C+Select-Object+-ExpandProperty+SerialNumber%29%22%0D%0A&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Romance+Standard+Time&PartitionMode=Unattended&PartitionLayout=GPT&EspSize=300&RecoveryMode=None&DiskAssertionMode=Skip&WindowsEditionMode=Generic&WindowsEdition=education_n&UserAccountMode=Unattended&AccountName0=&AccountName1=&AccountName2=&AccountName3=&AutoLogonMode=Builtin&BuiltinAdministratorPassword=123&ObscurePasswords=true&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=Hidden&ShowFileExtensions=true&ClassicContextMenu=true&LaunchToThisPC=true&ShowEndTask=true&TaskbarSearch=Box&TaskbarIconsMode=Default&DisableWidgets=true&LeftTaskbar=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Default&StartPinsMode=Empty&DisableDefender=true&DisableWindowsUpdate=true&DisableUac=true&DisableSac=true&DisableSmartScreen=true&DisableFastStartup=true&DisableSystemRestore=true&AllowPowerShellScripts=true&DisableLastAccess=true&DisableAppSuggestions=true&PreventDeviceEncryption=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&DeleteWindowsOld=true&EffectsMode=Default&DesktopIconsMode=Custom&IconControlPanel=true&IconRecycleBin=true&IconThisPC=true&VirtIoGuestTools=true&WifiMode=Unattended&WifiName=RJ&WifiAuthentication=WPA3SAE&WifiPassword=r%2Bj22102022&ExpressSettings=DisableAll&KeysMode=Skip&ColorMode=Custom&SystemColorTheme=Light&AppsColorTheme=Light&AccentColor=%23008080&AccentColorOnStart=true&AccentColorOnBorders=true&WallpaperMode=Solid&WallpaperColor=%23008080&Remove3DViewer=true&RemoveBingSearch=true&RemoveCalculator=true&RemoveCamera=true&RemoveClipchamp=true&RemoveClock=true&RemoveCopilot=true&RemoveCortana=true&RemoveDevHome=true&RemoveFamily=true&RemoveFeedbackHub=true&RemoveGetHelp=true&RemoveHandwriting=true&RemoveInternetExplorer=true&RemoveMailCalendar=true&RemoveMaps=true&RemoveMathInputPanel=true&RemoveMediaFeatures=true&RemoveMixedReality=true&RemoveZuneVideo=true&RemoveNews=true&RemoveNotepad=true&RemoveOffice365=true&RemoveOneDrive=true&RemoveOneNote=true&RemoveOneSync=true&RemoveOpenSSHClient=true&RemoveOutlook=true&RemovePaint=true&RemovePaint3D=true&RemovePeople=true&RemovePhotos=true&RemovePowerAutomate=true&RemovePowerShell2=true&RemovePowerShellISE=true&RemoveQuickAssist=true&RemoveRecall=true&RemoveRdpClient=true&RemoveSkype=true&RemoveSnippingTool=true&RemoveSolitaire=true&RemoveSpeech=true&RemoveStepsRecorder=true&RemoveStickyNotes=true&RemoveTeams=true&RemoveGetStarted=true&RemoveToDo=true&RemoveVoiceRecorder=true&RemoveWallet=true&RemoveWeather=true&RemoveFaxAndScan=true&RemoveWindowsHello=true&RemoveWindowsMediaPlayer=true&RemoveZuneMusic=true&RemoveWindowsTerminal=true&RemoveWordPad=true&RemoveXboxApps=true&RemoveYourPhone=true&SystemScript0=%24out+%3D+powercfg.exe+%2FDUPLICATESCHEME+e9a42b02-d5df-448d-aa00-03f14749eb61%3B%0D%0Aif%28+%24out+-match+%27%5Cs%28%5Ba-f0-9-%5D%7B36%7D%29%5Cs%27+%29+%7B%0D%0A++++powercfg.exe+%2FSETACTIVE+%24Matches%5B1%5D%3B%0D%0A%7D&SystemScriptType0=Ps1&FirstLogonScript0=Add-Type+-AssemblyName+%22System.Windows.Forms%22%0D%0A%5BSystem.Windows.Forms.MessageBox%5D%3A%3AShow%28%22Windows+has+been+installed%21%22%2C+%22Success%21%22%29%0D%0A&FirstLogonScriptType0=Ps1&WdacMode=Skip-->
+	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-DK&Keyboard=00020409&GeoLocation=61&ProcessorArchitecture=amd64&BypassRequirementsCheck=true&ComputerNameMode=Script&ComputerNameScript=%23+Finder+computerens+serienummer+og+tilf%C3%B8jer+en+prefix%0D%0A%23+f.eks+virksomhedsnavn-PF1S604Y%0D%0Areturn+%22CONTOSO-%24%28Get-CimInstance+-ClassName+Win32_BIOS+%7C+Select-Object+-ExpandProperty+SerialNumber%29%22%0D%0A&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Romance+Standard+Time&PartitionMode=Unattended&PartitionLayout=GPT&EspSize=300&RecoveryMode=None&DiskAssertionMode=Skip&WindowsEditionMode=Generic&WindowsEdition=education_n&UserAccountMode=Unattended&AccountName0=&AccountName1=&AccountName2=&AccountName3=&AutoLogonMode=Builtin&BuiltinAdministratorPassword=123&ObscurePasswords=true&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=Hidden&ShowFileExtensions=true&ClassicContextMenu=true&LaunchToThisPC=true&ShowEndTask=true&TaskbarSearch=Box&TaskbarIconsMode=Default&DisableWidgets=true&LeftTaskbar=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Default&StartPinsMode=Empty&DisableDefender=true&DisableWindowsUpdate=true&DisableUac=true&DisableSac=true&DisableSmartScreen=true&DisableFastStartup=true&DisableSystemRestore=true&AllowPowerShellScripts=true&DisableLastAccess=true&DisableAppSuggestions=true&PreventDeviceEncryption=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&DeleteWindowsOld=true&EffectsMode=Default&DesktopIconsMode=Custom&IconControlPanel=true&IconRecycleBin=true&IconThisPC=true&WifiMode=Unattended&WifiName=RJ&WifiAuthentication=WPA3SAE&WifiPassword=r%2Bj22102022&ExpressSettings=DisableAll&KeysMode=Skip&ColorMode=Custom&SystemColorTheme=Light&AppsColorTheme=Light&AccentColor=%23008080&AccentColorOnBorders=true&WallpaperMode=Solid&WallpaperColor=%23008080&Remove3DViewer=true&RemoveBingSearch=true&RemoveCalculator=true&RemoveCamera=true&RemoveClipchamp=true&RemoveClock=true&RemoveCopilot=true&RemoveCortana=true&RemoveDevHome=true&RemoveFamily=true&RemoveFeedbackHub=true&RemoveGetHelp=true&RemoveHandwriting=true&RemoveInternetExplorer=true&RemoveMailCalendar=true&RemoveMaps=true&RemoveMathInputPanel=true&RemoveMediaFeatures=true&RemoveMixedReality=true&RemoveZuneVideo=true&RemoveNews=true&RemoveNotepad=true&RemoveOffice365=true&RemoveOneDrive=true&RemoveOneNote=true&RemoveOneSync=true&RemoveOpenSSHClient=true&RemoveOutlook=true&RemovePaint=true&RemovePaint3D=true&RemovePeople=true&RemovePhotos=true&RemovePowerAutomate=true&RemovePowerShell2=true&RemovePowerShellISE=true&RemoveQuickAssist=true&RemoveRecall=true&RemoveRdpClient=true&RemoveSkype=true&RemoveSnippingTool=true&RemoveSolitaire=true&RemoveSpeech=true&RemoveStepsRecorder=true&RemoveStickyNotes=true&RemoveTeams=true&RemoveGetStarted=true&RemoveToDo=true&RemoveVoiceRecorder=true&RemoveWallet=true&RemoveWeather=true&RemoveFaxAndScan=true&RemoveWindowsHello=true&RemoveWindowsMediaPlayer=true&RemoveZuneMusic=true&RemoveWindowsTerminal=true&RemoveWordPad=true&RemoveXboxApps=true&RemoveYourPhone=true&SystemScript0=%24out+%3D+powercfg.exe+%2FDUPLICATESCHEME+e9a42b02-d5df-448d-aa00-03f14749eb61%3B%0D%0Aif%28+%24out+-match+%27%5Cs%28%5Ba-f0-9-%5D%7B36%7D%29%5Cs%27+%29+%7B%0D%0A++++powercfg.exe+%2FSETACTIVE+%24Matches%5B1%5D%3B%0D%0A%7D&SystemScriptType0=Ps1&FirstLogonScript0=Add-Type+-AssemblyName+%22System.Windows.Forms%22%0D%0A%5BSystem.Windows.Forms.MessageBox%5D%3A%3AShow%28%22Windows+has+been+installed%21%22%2C+%22Success%21%22%29%0D%0A&FirstLogonScriptType0=Ps1&WdacMode=Skip&Microsoft-Windows-Audio-VolumeControl=specialize-->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
 		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -144,6 +144,9 @@
 				</RunSynchronousCommand>
 			</RunSynchronous>
 		</component>
+		<component name="Microsoft-Windows-Audio-VolumeControl" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<!--Placeholder-->
+		</component>
 	</settings>
 	<settings pass="auditSystem"></settings>
 	<settings pass="auditUser"></settings>
@@ -204,7 +207,7 @@ foreach( $file in $Document.unattend.Extensions.File ) {
 		<File path="C:\Windows\Setup\Scripts\GetComputerName.ps1">
 # Finder computerens serienummer og tilf&#xF8;jer en prefix
 # f.eks virksomhedsnavn-PF1S604Y
-return "CONTOSE-$(Get-CimInstance -ClassName Win32_BIOS | Select-Object -ExpandProperty SerialNumber)"
+return "CONTOSO-$(Get-CimInstance -ClassName Win32_BIOS | Select-Object -ExpandProperty SerialNumber)"
 		</File>
 		<File path="C:\Windows\Setup\Scripts\SetComputerName.ps1">
 $ErrorActionPreference = 'Stop';
@@ -536,18 +539,6 @@ Set-ItemProperty @params -Name 'PauseUpdatesExpiryTime' -Value $end;
 	&lt;/Actions&gt;
 &lt;/Task&gt;
 		</File>
-		<File path="C:\Windows\Setup\Scripts\VirtIoGuestTools.ps1">
-&amp; {
-	foreach( $letter in 'DEFGHIJKLMNOPQRSTUVWXYZ'.ToCharArray() ) {
-		$exe = "${letter}:\virtio-win-guest-tools.exe";
-		if( Test-Path -LiteralPath $exe ) {
-			Start-Process -FilePath $exe -ArgumentList '/passive', '/norestart' -Wait;
-			return;
-		}
-	}
-	'VirtIO Guest Tools image (virtio-win-*.iso) is not attached to this VM.';
-} *&gt;&amp;1 &gt;&gt; 'C:\Windows\Setup\Scripts\VirtIoGuestTools.log';
-		</File>
 		<File path="C:\Windows\Setup\Scripts\SetStartPins.ps1">
 $json = '{"pinnedList":[]}';
 if( [System.Environment]::OSVersion.Version.Build -lt 20000 ) {
@@ -560,7 +551,7 @@ Set-ItemProperty -LiteralPath $key -Name 'ConfigureStartPins' -Value $json -Type
 		<File path="C:\Windows\Setup\Scripts\SetColorTheme.ps1">
 $lightThemeSystem = 1;
 $lightThemeApps = 1;
-$accentColorOnStart = 1;
+$accentColorOnStart = 0;
 $enableTransparency = 0;
 $htmlAccentColor = '#008080';
 &amp; {
@@ -755,9 +746,6 @@ $scripts = @(
 	};
 	{
 		reg.exe add "HKLM\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 1 /f;
-	};
-	{
-		Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\VirtIoGuestTools.ps1' -Raw | Invoke-Expression;
 	};
 	{
 		reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\BitLocker" /v "PreventDeviceEncryption" /t REG_DWORD /d 1 /f;

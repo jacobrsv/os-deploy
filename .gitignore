@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 image/win11.ntfs.zst*
 alpine_iso/os-deploy-USB*
+image/sysprepped.ntfs.zst
