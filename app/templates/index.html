@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Info</title>
+</head>
+<body>
+    <h1>Computer Info List</h1>
+    <a href="{{ url_for('add_info') }}">Add New Info</a>
+    <table border="1">
+        <thead>
+            <tr>
+		<th>ID</th>
+                <th>Serial Number</th>
+                <th>Computer Name</th>
+                <th>Date</th>
+                <th>IP Address</th>
+                <th>MAC Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in computer_info %}
+            <tr>
+		<td>{{ info.uuid }}</td>
+                <td>{{ info.serial_number }}</td>
+                <td>{{ info.computer_name }}</td>
+                <td>{{ info.date }}</td>
+                <td>{{ info.ip_address }}</td>
+                <td>{{ info.mac_address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

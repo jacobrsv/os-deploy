@@ -175,3 +175,10 @@ cython_debug/
 image/win11.ntfs.zst*
 alpine_iso/os-deploy-USB*
 image/sysprepped.ntfs.zst
+drivers/*
+image/windows_msr2.img
+image/freshinstall.ntfs.zst
+image/sysprepped_unattend.ntfs.zst
+image/windows_efi2.img
+image/windows_efi2.img.zst
+image/windows_msr2.img.zst

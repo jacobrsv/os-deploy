@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Computer Info</title>
+</head>
+<body>
+    <h1>Add Computer Info</h1>
+    <form method="POST">
+        <label for="uuid">UUID:</label><br>
+        <input type="text" name="uuid" required><br>
+
+        <label for="serial_number">Serial Number:</label><br>
+        <input type="text" name="serial_number" required><br>
+        
+        <label for="computer_name">Computer Name:</label><br>
+        <input type="text" name="computer_name" required><br>
+        
+        <label for="ip_address">IP Address:</label><br>
+        <input type="text" name="ip_address" required><br>
+        
+        <label for="mac_address">MAC Address:</label><br>
+        <input type="text" name="mac_address" required><br><br>
+        
+        <input type="submit" value="Add Info">
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back to List</a>
+</body>
+</html>
