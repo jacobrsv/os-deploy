@@ -25,7 +25,6 @@ class ComputerInfo(db.Model):
     win_build = db.Column(db.String(10), nullable=False)
     win_ver = db.Column(db.String(12), nullable=False)
     win_name = db.Column(db.String(100), nullable=False)
-    
 
     def __repr__(self):
         return f"<ComputerInfo {self.serial_number} - {self.computer_name}>"
@@ -44,7 +43,7 @@ def index():
         db.session.delete(record_to_delete)
         db.session.commit()
 
-    
+
     # Get all records from the database
     computer_info = ComputerInfo.query.all()
     number_of_records = len(computer_info)
@@ -58,7 +57,12 @@ def index():
     }
 
     # Create the pie chart using Plotly Express
-    pie_fig = px.pie(data, names="Windows Version", values="Count", title="Windows Version Distribution", height=410, width=640)
+    pie_fig = px.pie(data,
+                     names="Windows Version",
+                     values="Count",
+                     title="Windows Version Distribution",
+                     height=410,
+                     width=640)
     pie_fig.update_layout(
         plot_bgcolor="#f9f9f9",  # Background color of the plot area
         paper_bgcolor="#f9f9f9"  # Background color of the entire chart
