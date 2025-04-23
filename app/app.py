@@ -59,6 +59,10 @@ def index():
 
     # Create the pie chart using Plotly Express
     pie_fig = px.pie(data, names="Windows Version", values="Count", title="Windows Version Distribution", height=410, width=640)
+    pie_fig.update_layout(
+        plot_bgcolor="#f9f9f9",  # Background color of the plot area
+        paper_bgcolor="#f9f9f9"  # Background color of the entire chart
+    )
 
     return render_template('index.html', computer_info=computer_info, number_of_records=number_of_records, piechart=pie_fig.to_html())
 
