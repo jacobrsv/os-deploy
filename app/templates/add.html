@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Computer Info</title>
+    <title>Add Computer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 <body>
-    <h1>Add Computer Info</h1>
+    <h1>Add Computer</h1>
     <form method="POST">
         <label for="uuid">UUID:</label><br>
         <input type="text" name="uuid" required><br>
 
         <label for="serial_number">Serial Number:</label><br>
         <input type="text" name="serial_number" required><br>
-        
+
         <label for="computer_name">Computer Name:</label><br>
         <input type="text" name="computer_name" required><br>
-        
+
         <label for="ip_address">IP Address:</label><br>
         <input type="text" name="ip_address" required><br>
-        
+
         <label for="mac_address">MAC Address:</label><br>
         <input type="text" name="mac_address" required><br><br>
-        
-        <input type="submit" value="Add Info">
+
+        <label for="win_name">Windows:</label><br>
+        <select name="win_name" required>
+            <option value="Microsoft Windows 10 Pro">Microsoft Windows 10 Pro</option>
+            <option value="Microsoft Windows 11 Education N">Microsoft Windows 11 Education N</option>
+        </select><br><br>
+
+        <label for="win_ver">Windows version:</label><br>
+        <select name="win_ver" required>
+            <option value="10.0.19044">10.0.19044</option>
+            <option value="10.0.26100">10.0.26100</option>
+        </select><br><br>
+
+        <label for="win_build">Windows build:</label><br>
+        <select name="win_build" required>
+            <option value="19044">19044</option>
+            <option value="26100">26100</option>
+        </select><br><br>
+
+        <input type="submit" value="➕ Add to database">
     </form>
     <br>
     <a href="{{ url_for('index') }}">Back to List</a>
 </body>
+
 </html>

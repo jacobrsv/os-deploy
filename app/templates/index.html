@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Info</title>
+    <title>OS-Deploy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>Computer Info List</h1>
-    <a href="{{ url_for('add_info') }}">Add New Info</a>
+    <h1>OS-Deploy database</h1>
+    <div>
+        {{ piechart|safe }}
+    </div>
     <table border="1">
         <thead>
             <tr>
-		<th>ID</th>
-                <th>Serial Number</th>
-                <th>Computer Name</th>
                 <th>Date</th>
+                <th>Serial Number</th>
+                <th>UUID</th>
+                <th>Computer Name</th>
                 <th>IP Address</th>
                 <th>MAC Address</th>
+                <th>Windows</th>
+                <th>Version</th>
+                <th>Build</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for info in computer_info %}
             <tr>
-		<td>{{ info.uuid }}</td>
-                <td>{{ info.serial_number }}</td>
-                <td>{{ info.computer_name }}</td>
                 <td>{{ info.date }}</td>
+                <td>{{ info.serial_number }}</td>
+                <td>{{ info.uuid }}</td>
+                <td>{{ info.computer_name }}</td>
                 <td>{{ info.ip_address }}</td>
                 <td>{{ info.mac_address }}</td>
+                <td>{{ info.win_name }}</td>
+                <td>{{ info.win_ver }}</td>
+                <td>{{ info.win_build }}</td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="serial_number" value="{{ info.serial_number }}">
+                        <button>❌</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="{{ url_for('add_info') }}">Add Computer</a>
+    <p><i>Returned {{ number_of_records }} records</i></p>
 </body>
+
 </html>
