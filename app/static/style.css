@@ -12,6 +12,27 @@ h1 {
     text-align: center;
     margin-top: 20px;
     color: #333;
+    
+}
+.script_block {
+    width: 70%;
+    text-align: left;
+    font-family: monospace;
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: auto;
+}
+
+textarea {
+    width: 99%;
+    height: 310px;
+}
+
+.link-container a {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing as needed */
+    margin-bottom: 25px;
+    text-decoration: none; /* Optional: remove underline */
 }
 
 table {

@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Computer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block title %}Add computer{% endblock %}
 
-</head>
-
-<body>
-    <h1><strong>OS-Deploy</strong> | Add Computer</h1>
+{% block content %}
     <form method="POST">
         <label for="uuid">UUID:</label><br>
         <input type="text" name="uuid" required><br>
@@ -50,6 +42,5 @@
     <br>
     <p></p>
     <a href="{{ url_for('index') }}">Back to List</a>
-</body>
 
-</html>
+    {% endblock %}

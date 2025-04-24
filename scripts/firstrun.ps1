@@ -31,7 +31,7 @@ $ComputerName = $env:COMPUTERNAME
 Write-Output "Computer Name: $ComputerName"
 
 # Post data to web
-$Uri = "http://os-deploy.internal/"
+$Uri = "http://os-deploy.internal/api"
 $Body = @{
     SerialNumber = $SerialNumber
     UUID = $UUID
@@ -42,3 +42,9 @@ $Body = @{
 }
 $JsonBody = $Body | ConvertTo-Json -Depth 10
 Invoke-RestMethod -Uri $Uri -Method Post -Body $JsonBody -ContentType "application/json"
+
+
+Invoke-WebRequest -UseBasicParsing -Uri "http://os-deploy.internal:8000/add" `
+-Method POST `
+-ContentType "application/x-www-form-urlencoded" `
+-Body "uuid=uuid&serial_number=serialnumber&computer_name=computername&ip_address=ip&mac_address=mac&win_name=Microsoft+Windows+10+Pro&win_ver=10.0.19044&win_build=19044"

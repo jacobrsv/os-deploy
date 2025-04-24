@@ -5,10 +5,10 @@ import datetime, uuid, random
 from faker import Faker
 import plotly.express as px
 
-# Faker til testdata
+# Bruger Faker til testdata
 fake = Faker()
 
-# Initialisere flask og database
+# Initialiserer flask og database
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # To avoid warning
@@ -29,7 +29,7 @@ class ComputerInfo(db.Model):
     def __repr__(self):
         return f"<ComputerInfo {self.serial_number} - {self.computer_name}>"
 
-# Initialisere database, opretter data.db og tabeller hvis de ikke eksisterer.
+# Initialiserer database, opretter data.db og tabeller hvis de ikke eksisterer.
 with app.app_context():
     db.create_all()
 
@@ -49,7 +49,10 @@ def index():
     number_of_records = len(computer_info)
     print("Number fo records: ", number_of_records)
     # Tæl forskellige Windows-versioner
-    win_ver_counts = db.session.query(ComputerInfo.win_ver, db.func.count(ComputerInfo.win_ver)).group_by(ComputerInfo.win_ver).all()
+    win_ver_counts = db.session.query(
+        ComputerInfo.win_ver,
+        db.func.count(ComputerInfo.win_ver)
+        ).group_by(ComputerInfo.win_ver).all()
     # Prepare data for the pie chart
     data = {
         "Windows Version": [item[0] for item in win_ver_counts],
@@ -68,7 +71,10 @@ def index():
         paper_bgcolor="#f9f9f9"  # Background color of the entire chart
     )
 
-    return render_template('index.html', computer_info=computer_info, number_of_records=number_of_records, piechart=pie_fig.to_html())
+    return render_template('index.html',
+                           computer_info=computer_info,
+                           number_of_records=number_of_records,
+                           piechart=pie_fig.to_html())
 
 ### Tilføj computer ###
 @app.route('/add', methods=['GET', 'POST'])
@@ -100,19 +106,35 @@ def add_info():
     
     return render_template('add.html')
 
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
+@app.route('/config')
+def config():
+    scripts = [read_file('../scripts/start.sh'),
+               read_file('../scripts/format.sh'),
+               read_file('../scripts/download.sh'),
+               read_file('../scripts/firstrun.ps1')]
+    
+    return render_template('config.html', scripts=scripts)
+
 ### Fyld databasen med testdata ###
 @app.route('/addtestdata/<int:amount>')
 def add_test_data(amount):
+    windows_strings = ['Microsoft Windows 11 Education N', 'Microsoft Windows 10 Pro']
+    windows_versions = ['10.0.19044','10.0.26100']
+    windows_builds = ['19044','26100']
+    
     for _ in range(amount):
         fake_uuid = str(uuid.uuid4())
         fake_serial_number = f"SN{random.randint(10000, 99999)}"
         fake_computer_name = f"TST-{fake_serial_number}"
         fake_ip_address = fake.ipv4(private=True)
         fake_mac_address = fake.mac_address().replace(':','-')
-        fake_win_name = "Microsoft Windows 10 Pro"
-        #fake_win_ver = "10.0.19044"
-        fake_win_ver = "10.0.26100"
-        fake_win_build = "19044"
+        fake_win_name = random.choice(windows_strings)
+        fake_win_ver = random.choice(windows_versions)
+        fake_win_build = random.choice(windows_builds)
         
         fake_computer = ComputerInfo(uuid=fake_uuid,
                             serial_number=fake_serial_number, 
@@ -126,12 +148,17 @@ def add_test_data(amount):
             db.session.commit()
             db.session.add(fake_computer)
         except IntegrityError as e:
-        ## Nogle gange finder den på det samme serienummer, det ignorerer vi.
+        # Nogle gange finder den på det samme serienummer, det ignorerer vi.
             print(repr(e))
             db.session.rollback() 
             continue 
     return 'ok'
 
+
+
+
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+

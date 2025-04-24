@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS-Deploy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1><strong>OS-Deploy  | </strong> {% block title %}{% endblock %}</h1>
+    <div class="link-container">
+        <a href="{{ url_for('index') }}">Overview</a>
+        <a href="{{ url_for('add_info') }}">Add Computer</a>
+        <a href="{{ url_for('config') }}">Configuration</a>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>&copy; 2025 OS-Deploy</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Configuration{% endblock %}
+
+{% block content %}
+<p>Scripts bliver kørt i samme rækkefølge som de står på denne side:</p>
+<div class="script_block">
+    <form method="get">
+        <h3>start.sh</h3>
+        <textarea readonly>{{ scripts[0] }}</textarea>
+        <h3>format.sh</h3>
+        <textarea readonly>{{ scripts[1] }}</textarea>
+        <h3>download.sh</h3>
+        <textarea readonly>{{ scripts[2] }}</textarea>
+        <h3>firstrun.ps1</h3>
+        <textarea readonly>{{ scripts[3] }}</textarea>
+        <br><br>
+        <input type="submit" value="⚙️ Save configuration">
+    </form>
+
+</div>
+
+
+<br>
+<p></p>
+<a href="{{ url_for('index') }}">Back to List</a>
+
+{% endblock %}
