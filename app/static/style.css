@@ -30,9 +30,14 @@ textarea {
 
 .link-container a {
     display: inline-block;
-    margin-right: 10px; /* Adjust spacing as needed */
     margin-bottom: 25px;
-    text-decoration: none; /* Optional: remove underline */
+    border: 1px solid #ddd;
+    padding: 5px 14px;
+    background-color: #9c9c9c;
+    color: #eeeeee;
+}
+.link-container a:hover {
+    background-color: #4f4f4f;
 }
 
 table {
