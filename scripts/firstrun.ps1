@@ -15,7 +15,7 @@ $MACAddresses = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).MacAddress
 Write-Output "MAC Addresses: $($MACAddresses -join ', ')"
 
 # Windows name
-$WinName = "CONTOSO-$SerialNumber"
+$WinName = Get-CimInstance win32_operatingsystem | % caption
 Write-Output "Windows name: $WinName"
 
 # Windows build
@@ -27,7 +27,7 @@ $BuildVersion = (Get-CimInstance Win32_OperatingSystem).Version
 Write-Output "Windows Version: $BuildVersion"
 
 # Computernavn
-$ComputerName = $env:COMPUTERNAME
+$ComputerName = "CONTOSO-$SerialNumber"
 Write-Output "Computer Name: $ComputerName"
 
 # Post data to web
