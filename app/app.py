@@ -162,7 +162,10 @@ def add_test_data(amount):
     return 'ok'
 
 
-
+##### Browse images ###########################################################
+@app.route('/browse')
+def browse():   
+    return render_template('browse.html')
 
 
 # Run the app
