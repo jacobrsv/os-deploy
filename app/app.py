@@ -127,7 +127,8 @@ def config():
 ##### Generer testdata ########################################################
 @app.route('/addtestdata/<int:amount>')
 def add_test_data(amount):
-    windows_strings = ['Microsoft Windows 11 Education N', 'Microsoft Windows 10 Pro']
+    windows_strings = ['Microsoft Windows 11 Education N',
+                       'Microsoft Windows 10 Pro']
     windows_versions = ['10.0.19044','10.0.26100']
     windows_builds = ['19044','26100']
     
@@ -153,7 +154,8 @@ def add_test_data(amount):
             db.session.commit()
             db.session.add(fake_computer)
         except IntegrityError as e:
-        # Nogle gange finder den på det samme serienummer, det ignorerer vi.
+        # Nogle gange finder den på det samme serienummer,
+        # Det resulterer i en UNIQUE Constraint. Det ignorerer vi.
             print(repr(e))
             db.session.rollback() 
             continue 
