@@ -19,8 +19,8 @@ $WinName = Get-CimInstance win32_operatingsystem | % caption
 Write-Output "Windows name: $WinName"
 
 # Windows build
-$BuildVersion = (Get-CimInstance Win32_OperatingSystem).BuildNumber
-Write-Output "Windows Build: $BuildVersion"
+$WinBuild = (Get-CimInstance Win32_OperatingSystem).BuildNumber
+Write-Output "Windows Build: $WinBuild"
 
 # Windows version
 $BuildVersion = (Get-CimInstance Win32_OperatingSystem).Version
@@ -37,4 +37,4 @@ $URL = "http://osdeploy.internal:8000/add"
 Invoke-WebRequest -UseBasicParsing -Uri $URL `
 -Method POST `
 -ContentType "application/x-www-form-urlencoded" `
--Body "uuid=$UUID&serial_number=$SerialNumber&computer_name=$ComputerName&ip_address=$($IPAddresses -join ',')&mac_address=$($MACAddresses -join ',')&win_name=$WinName&win_ver=$BuildVersion&win_build=$BuildVersion"
+-Body "uuid=$UUID&serial_number=$SerialNumber&computer_name=$ComputerName&ip_address=$($IPAddresses -join ',')&mac_address=$($MACAddresses -join ',')&win_name=$WinName&win_ver=$BuildVersion&win_build=$WinBuild"
