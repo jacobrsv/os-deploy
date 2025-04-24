@@ -15,7 +15,7 @@ $MACAddresses = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).MacAddress
 Write-Output "MAC Addresses: $($MACAddresses -join ', ')"
 
 # Windows name
-$WinName = Get-CimInstance win32_operatingsystem | % caption
+$WinName = "CONTOSO-$SerialNumber"
 Write-Output "Windows name: $WinName"
 
 # Windows build
