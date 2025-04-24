@@ -45,7 +45,7 @@ def index():
 
 
     # Get all records from the database
-    computer_info = ComputerInfo.query.all()
+    computer_info = ComputerInfo.query.order_by(ComputerInfo.date.desc()).all()
     number_of_records = len(computer_info)
     print("Number fo records: ", number_of_records)
     # Tæl forskellige Windows-versioner
@@ -127,11 +127,11 @@ def add_test_data(amount):
     windows_builds = ['19044','26100']
     
     for _ in range(amount):
-        fake_uuid = str(uuid.uuid4())
+        fake_uuid = str(uuid.uuid4()).upper()
         fake_serial_number = f"SN{random.randint(10000, 99999)}"
         fake_computer_name = f"TST-{fake_serial_number}"
         fake_ip_address = fake.ipv4(private=True)
-        fake_mac_address = fake.mac_address().replace(':','-')
+        fake_mac_address = fake.mac_address().replace(':','-').upper()
         fake_win_name = random.choice(windows_strings)
         fake_win_ver = random.choice(windows_versions)
         fake_win_build = random.choice(windows_builds)
@@ -160,5 +160,5 @@ def add_test_data(amount):
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="unix://../app.sock")
 

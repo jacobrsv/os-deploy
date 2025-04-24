@@ -1,6 +1,24 @@
 :8000 {
-	file_server * browse {
-		hide .git
+	# Reverse proxy for all other requests
+	#reverse_proxy 127.0.0.1:5000
+	reverse_proxy unix/app.sock
+
+	# File server for /scripts
+	handle_path /scripts/* {
+		file_server browse {
+			root ./scripts
+			hide .git
+		}
 	}
+
+	# File server for /image
+	handle_path /image/* {
+		file_server browse {
+			root ./image
+			hide .git
+		}
+	}
+
+	# Enable logging
 	log
 }
