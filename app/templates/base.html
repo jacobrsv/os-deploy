@@ -9,8 +9,10 @@
 </head>
 
 <body>
-    <h1><strong>OS-Deploy  | </strong> {% block title %}{% endblock %}</h1>
-    <div class="link-container">
+    <div class="header-container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="OS-Deploy Logo">
+        <h1>{% block title %}{% endblock %}</h1>
+    </div>    <div class="link-container">
         <a href="{{ url_for('index') }}">Overview</a>
         <a href="{{ url_for('add_info') }}">Add Computer</a>
         <a href="{{ url_for('config') }}">Configuration</a>

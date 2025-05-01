@@ -10,7 +10,7 @@ fake = Faker()
 
 # Initialiserer flask og database
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
 # ComputerInfo klassen
@@ -25,8 +25,6 @@ class ComputerInfo(db.Model):
     win_ver = db.Column(db.String(12), nullable=False)
     win_name = db.Column(db.String(100), nullable=False)
 
-    # def __repr__(self):
-    #     return f"<ComputerInfo {self.serial_number} - {self.computer_name}>"
 
 # Initialiserer database, opretter data.db og tabeller hvis de ikke eksisterer.
 with app.app_context():
@@ -90,21 +88,37 @@ def add_info():
         win_name = request.form['win_name']
         win_ver = request.form['win_ver']
         win_build = request.form['win_build']
-        
-        # Opretter nyt ComputerInfo objekt og comitter til DB
-        new_computer = ComputerInfo(uuid=uuid,
-                                    serial_number=serial_number, 
-                                    computer_name=computer_name,
-                                    ip_address=ip_address,
-                                    mac_address=mac_address,
-                                    win_name=win_name,
-                                    win_build=win_build,
-                                    win_ver=win_ver)
-        db.session.add(new_computer)
+
+        # Se om der allerede findes en record i databasen
+        existing_computer = ComputerInfo.query.filter_by(
+            serial_number=serial_number).first()
+        print("///////////// Record exists: ", existing_computer)
+        if existing_computer:
+            # Opdaterer eksisterende ComputerInfo objekt
+            existing_computer.date = datetime.datetime.now()
+            existing_computer.uuid = uuid
+            existing_computer.computer_name = computer_name
+            existing_computer.ip_address = ip_address
+            existing_computer.mac_address = mac_address
+            existing_computer.win_name = win_name
+            existing_computer.win_ver = win_ver
+            existing_computer.win_build = win_build
+        else:
+            # Opretter nyt ComputerInfo objekt og comitter til DB
+            new_computer = ComputerInfo(uuid=uuid,
+                                        serial_number=serial_number,
+                                        computer_name=computer_name,
+                                        ip_address=ip_address,
+                                        mac_address=mac_address,
+                                        win_name=win_name,
+                                        win_build=win_build,
+                                        win_ver=win_ver)
+
+            db.session.add(new_computer)
         db.session.commit()
 
         return redirect(url_for('index'))
-    
+
     return render_template('add.html')
 
 def read_file(file_path):
@@ -120,7 +134,7 @@ def config():
                read_file('../scripts/format.sh'),
                read_file('../scripts/download.sh'),
                read_file('../scripts/firstrun.ps1')]
-    
+
     return render_template('config.html', scripts=scripts)
 
 
@@ -131,7 +145,7 @@ def add_test_data(amount):
                        'Microsoft Windows 10 Pro']
     windows_versions = ['10.0.19044','10.0.26100']
     windows_builds = ['19044','26100']
-    
+
     for _ in range(amount):
         fake_uuid = str(uuid.uuid4()).upper()
         fake_serial_number = f"SN{random.randint(10000, 99999)}"
@@ -141,9 +155,9 @@ def add_test_data(amount):
         fake_win_name = random.choice(windows_strings)
         fake_win_ver = random.choice(windows_versions)
         fake_win_build = random.choice(windows_builds)
-        
+
         fake_computer = ComputerInfo(uuid=fake_uuid,
-                            serial_number=fake_serial_number, 
+                            serial_number=fake_serial_number,
                             computer_name=fake_computer_name,
                             ip_address=fake_ip_address,
                             mac_address=fake_mac_address,
@@ -157,18 +171,18 @@ def add_test_data(amount):
         # Nogle gange finder den på det samme serienummer,
         # Det resulterer i en UNIQUE Constraint. Det ignorerer vi.
             print(repr(e))
-            db.session.rollback() 
-            continue 
+            db.session.rollback()
+            continue
     return 'ok'
 
 
-##### Browse images ###########################################################
+##### Browse os images ########################################################
 @app.route('/browse')
-def browse():   
+def browse():
     return render_template('browse.html')
 
 
-# Run the app
+# Kør appen i et unix socket, som caddy samler op.
 if __name__ == '__main__':
     app.run(debug=True, host="unix://../app.sock")
 

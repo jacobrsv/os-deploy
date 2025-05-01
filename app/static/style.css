@@ -8,9 +8,20 @@ body {
     background-color: #f9f9f9;
 }
 
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-container img {
+    height: 70px;
+    margin-right: 10px;
+}
+
 h1 {
     text-align: center;
     margin-top: 20px;
+    margin-left: 40px;
     color: #333;
     
 }
