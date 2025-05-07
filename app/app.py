@@ -1,3 +1,10 @@
+###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
+
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
@@ -34,6 +41,7 @@ with app.app_context():
 ##### Index ###################################################################
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # Håndter POST, til at slette et ComputerInfo objekt
     if request.method == 'POST':
         serial_number = request.form['serial_number']
         print(serial_number)
@@ -41,45 +49,49 @@ def index():
         db.session.delete(record_to_delete)
         db.session.commit()
 
-
     # Get all records from the database
     computer_info = ComputerInfo.query.order_by(ComputerInfo.date.desc()).all()
     number_of_records = len(computer_info)
     print("Number fo records: ", number_of_records)
+    
     # Tæl forskellige Windows-versioner
     win_ver_counts = db.session.query(
         ComputerInfo.win_ver,
-        db.func.count(ComputerInfo.win_ver)
+        db.func.count(ComputerInfo.win_ver) # Får SQL til at tælle
         ).group_by(ComputerInfo.win_ver).all()
-    # Prepare data for the pie chart
+    # Opstil data til diagrammet
+    # [( Version, Count ), ( Version, Count )]   f.eks.:
+    # [('10.0.19044', 25), ('10.0.26100', 22)]
     data = {
         "Windows Version": [item[0] for item in win_ver_counts],
         "Count": [item[1] for item in win_ver_counts]
     }
 
-    # Create the pie chart using Plotly Express
+    # Cirkeldiagram med Plotly Express
     pie_fig = px.pie(data,
                      names="Windows Version",
                      values="Count",
                      title="Windows Version Distribution",
                      height=410,
-                     width=640)
+                     width=640,
+                     )
     pie_fig.update_layout(
-        plot_bgcolor="#f9f9f9",  # Background color of the plot area
-        paper_bgcolor="#f9f9f9"  # Background color of the entire chart
+        plot_bgcolor="#f9f9f9",
+        paper_bgcolor="#f9f9f9"
     )
-
+    pie_fig = pie_fig.to_html()
+    
     return render_template('index.html',
                            computer_info=computer_info,
                            number_of_records=number_of_records,
-                           piechart=pie_fig.to_html())
+                           piechart=pie_fig)
 
 
 ##### Tilføj computer #########################################################
 @app.route('/add', methods=['GET', 'POST'])
 def add_info():
     if request.method == 'POST':
-        # Hent data fra html form
+        # Hent data fra HTML form
         uuid = request.form['uuid']
         serial_number = request.form['serial_number']
         computer_name = request.form['computer_name']
@@ -93,7 +105,7 @@ def add_info():
         existing_computer = ComputerInfo.query.filter_by(
             serial_number=serial_number).first()
         print("///////////// Record exists: ", existing_computer)
-        if existing_computer:
+        if existing_computer:           # findes
             # Opdaterer eksisterende ComputerInfo objekt
             existing_computer.date = datetime.datetime.now()
             existing_computer.uuid = uuid
@@ -103,8 +115,8 @@ def add_info():
             existing_computer.win_name = win_name
             existing_computer.win_ver = win_ver
             existing_computer.win_build = win_build
-        else:
-            # Opretter nyt ComputerInfo objekt og comitter til DB
+        else:                           # findes ikke
+            # Opretter nyt ComputerInfo objekt
             new_computer = ComputerInfo(uuid=uuid,
                                         serial_number=serial_number,
                                         computer_name=computer_name,
@@ -125,11 +137,10 @@ def read_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-
 ##### Configuration ###########################################################
 @app.route('/config')
 def config():
-    # Læser filer og sender dem videre til templaten
+    # Læser filer, putter dem i en liste og sender dem videre.
     scripts = [read_file('../scripts/start.sh'),
                read_file('../scripts/format.sh'),
                read_file('../scripts/download.sh'),
@@ -147,6 +158,7 @@ def add_test_data(amount):
     windows_builds = ['19044','26100']
 
     for _ in range(amount):
+        # Generer værdier
         fake_uuid = str(uuid.uuid4()).upper()
         fake_serial_number = f"SN{random.randint(10000, 99999)}"
         fake_computer_name = f"CONTOSO-{fake_serial_number}"
@@ -155,7 +167,7 @@ def add_test_data(amount):
         fake_win_name = random.choice(windows_strings)
         fake_win_ver = random.choice(windows_versions)
         fake_win_build = random.choice(windows_builds)
-
+        # Put værdier i ComputerInfo objekt
         fake_computer = ComputerInfo(uuid=fake_uuid,
                             serial_number=fake_serial_number,
                             computer_name=fake_computer_name,
@@ -182,7 +194,7 @@ def browse():
     return render_template('browse.html')
 
 
-# Kør appen i et unix socket, som caddy samler op.
+# Kør appen i et unix socket, som Caddy samler op.
 if __name__ == '__main__':
     app.run(debug=True, host="unix://../app.sock")
 

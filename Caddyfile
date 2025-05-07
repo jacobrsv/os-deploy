@@ -1,24 +1,31 @@
+###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
+
+# Kører på port 8000
 :8000 {
-	# Reverse proxy for all other requests
-	#reverse_proxy 127.0.0.1:5000
+	# Send i udgangspunktet alle requests til Flask app
 	reverse_proxy unix/app.sock
 
-	# File server for /scripts
+	# File server for "/scripts"
 	handle_path /scripts/* {
 		file_server browse {
 			root ./scripts
 			hide .git
 		}
 	}
-
-	# File server for /image
+	# File server for "/image"
 	handle_path /image/* {
 		file_server browse {
 			root ./image
 			hide .git
 		}
 	}
-
-	# Enable logging
-	log
+	#Skriv log til konsollen
+	log {
+		output stdout
+		format console
+	}
 }

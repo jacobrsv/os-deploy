@@ -1,5 +1,9 @@
 #!/bin/sh
-
+###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
 #
 # Downloader og skriver disk images til disk
 #

@@ -1,3 +1,9 @@
+###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
+
 # Find serienummeret
 $SerialNumber = (Get-WmiObject -Class Win32_BIOS).SerialNumber
 Write-Output "Serial Number: $SerialNumber"

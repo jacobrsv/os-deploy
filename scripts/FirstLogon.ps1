@@ -1,4 +1,10 @@
-﻿$scripts = @(
+﻿###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
+
+$scripts = @(
 	{
 		Set-ItemProperty -LiteralPath 'Registry::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoLogonCount' -Type 'DWord' -Force -Value 0;
 	};

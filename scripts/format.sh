@@ -1,5 +1,9 @@
 #!/bin/sh
-
+###############################################################################
+######          KEA IT-Teknolog, 4. semester afsluttende projekt         ######
+###                               OS-Deploy                                 ###
+######                      Jacob Rusch Svendsen                         ######
+###############################################################################
 #
 # Formaterer føste nvme disk til en Windows-installation
 # 315MB EFI partition
