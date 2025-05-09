@@ -34,6 +34,7 @@ printf "    │ Disk fundet: $DISK \n"
 printf "    ╰──────────────────────╯\n\n${RESET}"
 
 printf "${BOLD}====================================================================================${RESET}\n"
+# Vis nuværende disklayout til brugeren
 fdisk -l $DISK
 printf "${BOLD}====================================================================================${RESET}\n\n"
 ###
@@ -48,6 +49,7 @@ sleep 1
 
 printf "${BOLD}${GREEN}Wiping $DISK${RESET}\n\n"
 printf "${BOLD}====================================================================================${RESET}\n"
+# Slet alle filsystmer med wipefs og sgdisk.
 wipefs --all $DISK
 sgdisk --zap-all $DISK
 printf "${BOLD}====================================================================================${RESET}\n\n"
