@@ -26,6 +26,7 @@ UNDERLINE='\033[4m'
 DISK="$1"
 URL="$2"
 
+# Lav forskellige variabler hvis disken er nvme eller ikke
 case "$DISK" in
 	/dev/sd*)
 		EFI_PART="$DISK"1
@@ -55,22 +56,21 @@ printf "\n${BOLD}${GREEN}"
 printf "    ╭───────────────────────────────────╮\n"
 printf "    │ Downloading EFI partition...      │\n"
 printf "    ╰───────────────────────────────────╯\n\n${RESET}"
-curl -Z -s $URL/image/windows_efi2.img.zst | zstd --decompress --stdout | dd of="$EFI_PART" bs=512k
+curl -s $URL/image/windows_efi2.img.zst | zstd --decompress --stdout | dd of="$EFI_PART" bs=512k
 
 printf "\n${BOLD}${GREEN}"
 printf "    ╭───────────────────────────────────╮\n"
 printf "    │ Downloading MSR partition...      │\n"
 printf "    ╰───────────────────────────────────╯\n\n${RESET}"
-curl -Z -s $URL/image/windows_msr2.img.zst | zstd --decompress --stdout | dd of="$MSR_PART" bs=512k
+curl -s $URL/image/windows_msr2.img.zst | zstd --decompress --stdout | dd of="$MSR_PART" bs=512k
 
 printf "\n${BOLD}${GREEN}"
 printf "    ╭───────────────────────────────────╮\n"
 printf "    │ Downloading NTFS partition...     │\n"
 printf "    ╰───────────────────────────────────╯\n\n${RESET}"
 printf "${BOLD}${CYAN}"
-curl -Z -s $URL/image/sysprepped_unattend.ntfs.zst | zstd --decompress --stdout | pv -c --name "Writing Windows partition to disk" --rate --timer -p --size=20G | ntfsclone -f -r -O "$NTFS_PART" /dev/stdin
-#curl -s $URL/image/freshinstall.ntfs.zst | zstd --decompress --stdout | pv -c --name "Writing Windows partition to disk" --rate --timer -p --size=22G -m 30 | ntfsclone -f -r -O "$NTFS_PART" /dev/stdin
-
+curl -s $URL/image/sysprepped_unattend.ntfs.zst | zstd --decompress --stdout | pv -c --name "Writing Windows partition to disk" --rate --timer -p --size=20G | ntfsclone -f -r -O "$NTFS_PART" /dev/stdin
+# Synchronize cached writes
 sync
 
 #echo "Creating EFI boot entry"
