@@ -29,10 +29,15 @@ printf "    ╰────────────────────╯\n
 printf "${RESET}\n\n"
 
 printf "${BOLD}${GREEN}    IP address: ${RESET}${BOLD}"
-ifconfig | awk -F':' '/inet addr/&&!/127.0.0.1/{split($2,_," ");print _[1]}'
+ip -brief address
 printf "\n\n"
 
-# Find passende disk
+### Find passende disk
+# List diske med NAME og SIZE som kolonner  |
+# inverted match NAME                       |
+# sortér på reversed,bytes                  |
+# Kun første linje                          |
+# awk printer første felt
 BIGGEST_DEVICE=$(lsblk -b -o NAME,SIZE | grep -v NAME | sort -k2 -nr | head -n1 | awk '{print $1}')
 DISK="/dev/$BIGGEST_DEVICE"
 URL="http://osdeploy.internal:8000"
