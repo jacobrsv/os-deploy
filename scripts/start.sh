@@ -41,7 +41,6 @@ printf "\n\n"
 BIGGEST_DEVICE=$(lsblk -b -o NAME,SIZE | grep -v NAME | sort -k2 -nr | head -n1 | awk '{print $1}')
 DISK="/dev/$BIGGEST_DEVICE"
 URL="http://osdeploy.internal:8000"
-
 printf "\n\n    ${BOLD}${GREEN}Klargører disk${RESET}\n\n"
 sh <(curl -s "$URL"/scripts/format.sh) $DISK
 sh <(curl -s "$URL"/scripts/download.sh) $DISK $URL
