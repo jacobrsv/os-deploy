@@ -28,9 +28,12 @@ printf "    │                    │\n"
 printf "    ╰────────────────────╯\n"
 printf "${RESET}\n\n"
 
-printf "${BOLD}${GREEN}    IP address: ${RESET}${BOLD}"
-ip -brief address
-printf "\n\n"
+printf "${BOLD}${GREEN}    IP address: ${RESET}${BOLD}  "
+# Find IP-adresse. Filtrere outputtet med 'awk'
+# Linjer der starter med  'inet' springer over linjer der starter med '127'
+# og splitter ved '/'
+ip -4 a | awk '/inet / && $2 !~ /^127/ {split($2,a,"/"); print a[1]}'
+printf "\n\n${RESET}"
 
 ### Find passende disk
 # List diske med NAME og SIZE som kolonner  |
