@@ -20,6 +20,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
+def prettylog(*args):
+    bold_underline_cyan = "\033[96m\033[1m\033[4m"
+    clear_formatting = "\033[0m"
+    str_to_print = " ".join(str(arg) for arg in args)
+    print(bold_underline_cyan + str_to_print + clear_formatting)
+
+
 # ComputerInfo klassen
 class ComputerInfo(db.Model):
     serial_number = db.Column(db.String(100), primary_key=True)
@@ -52,7 +59,7 @@ def index():
     # Get all records from the database
     computer_info = ComputerInfo.query.order_by(ComputerInfo.date.desc()).all()
     number_of_records = len(computer_info)
-    print("Number fo records: ", number_of_records)
+    prettylog("Number fo records in db: ", number_of_records)
     
     # Tæl forskellige Windows-versioner
     win_ver_counts = db.session.query(
@@ -104,9 +111,13 @@ def add_info():
         # Se om der allerede findes en record i databasen
         existing_computer = ComputerInfo.query.filter_by(
             serial_number=serial_number).first()
-        print("///////////// Record exists: ", existing_computer)
         if existing_computer:           # findes
             # Opdaterer eksisterende ComputerInfo objekt
+            prettylog("Updating existing record:")
+            prettylog("  Name:    ", existing_computer.computer_name)
+            prettylog("  IP:      ", existing_computer.ip_address)
+            prettylog("  Version: ", existing_computer.win_name)
+            print()
             existing_computer.date = datetime.datetime.now()
             existing_computer.uuid = uuid
             existing_computer.computer_name = computer_name
@@ -125,7 +136,12 @@ def add_info():
                                         win_name=win_name,
                                         win_build=win_build,
                                         win_ver=win_ver)
-
+            prettylog("Creating new record:")
+            prettylog("  Name:    ", new_computer.computer_name)
+            prettylog("  IP:      ", new_computer.ip_address)
+            prettylog("  Version: ", new_computer.win_name)
+            print()
+            
             db.session.add(new_computer)
         db.session.commit()
 

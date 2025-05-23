@@ -24,8 +24,8 @@
 		}
 	}
 	#Skriv log til konsollen
-	log {
-		output stdout
-		format console
-	}
+	#log {
+	#	output stdout
+	#	format json
+	#}
 }
