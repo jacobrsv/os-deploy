@@ -10,6 +10,7 @@
 # 16MB MSR partition
 # resten til en NTFS partition
 #
+set -e
 
 # tekstfarve
 BLACK='\033[0;30m'

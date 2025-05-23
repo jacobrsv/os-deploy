@@ -7,6 +7,7 @@
 #
 # Downloader og skriver disk images til disk
 #
+set -e
 
 # tekstfarve
 BLACK='\033[0;30m'
