@@ -1,4 +1,5 @@
 Flask
 Flask-SQLAlchemy
 Faker
-plotly_express
+plotly-express
+SQLAlchemy
