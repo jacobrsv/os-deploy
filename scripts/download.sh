@@ -18,10 +18,9 @@ BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 WHITE='\033[0;37m'
-RESET='\033[0m'       # Reset til alm. tekst
-# Styles
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
+RESET='\033[0m'       # Reset til alm. tekst
 
 # Læs parameter
 DISK="$1"
@@ -50,9 +49,6 @@ printf "    │    MSR : ${RESET}${MSR_PART}${BOLD}\n"
 printf "    │    NFTS: ${RESET}${NTFS_PART}${BOLD}\n"
 printf "    ╰───────────────────────────────────╯\n\n${RESET}"
 
-#sleep 3
-#read -p "Tryk enter for at fortsætte"
-
 printf "\n${BOLD}${GREEN}"
 printf "    ╭───────────────────────────────────╮\n"
 printf "    │ Downloading EFI partition...      │\n"
@@ -71,11 +67,7 @@ printf "    │ Downloading NTFS partition...     │\n"
 printf "    ╰───────────────────────────────────╯\n\n${RESET}"
 printf "${BOLD}${CYAN}"
 curl -s $URL/image/sysprepped_unattend.ntfs.zst | zstd --decompress --stdout | pv -c --name "Writing Windows partition to disk" --rate --timer -p --size=20G | ntfsclone -f -r -O "$NTFS_PART" /dev/stdin
-# Synchronize cached writes
 sync
-
-#echo "Creating EFI boot entry"
-#efibootmgr --create --disk $DISK --part 1 --label "Windows Boot Manager" --loader "\EFI\Microsoft\Boot\bootmgfw.efi"
 
 printf "\n${BOLD}${GREEN}\n\n"
 printf "    ╭───────────────────────────────────╮\n"

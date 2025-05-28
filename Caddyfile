@@ -23,9 +23,4 @@
 			hide .git
 		}
 	}
-	#Skriv log til konsollen
-	#log {
-	#	output stdout
-	#	format json
-	#}
 }

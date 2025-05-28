@@ -67,8 +67,8 @@ def index():
         db.func.count(ComputerInfo.win_ver) # Får SQL til at tælle
         ).group_by(ComputerInfo.win_ver).all()
     # Opstil data til diagrammet
-    # [( Version, Count ), ( Version, Count )]   f.eks.:
-    # [('10.0.19044', 25), ('10.0.26100', 22)]
+    #   [( Version, Count ), ( Version, Count )]   f.eks.:
+    #   [('10.0.19044', 25), ('10.0.26100', 22)]
     data = {
         "Windows Version": [item[0] for item in win_ver_counts],
         "Count": [item[1] for item in win_ver_counts]

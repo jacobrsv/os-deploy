@@ -77,7 +77,5 @@ printf "${BOLD}=================================================================
 fdisk -l $DISK
 printf "${BOLD}====================================================================================${RESET}\n\n"
 
-
-# partprobe "$DISK" 2>/dev/null
 ## Scan diske og partitioner
 mdev -s
