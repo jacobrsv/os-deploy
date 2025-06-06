@@ -6,6 +6,11 @@
 
 # Kører på port 8000
 :8000 {
+	log {
+		output stdout
+		format json
+		level INFO
+	}
 	# Send i udgangspunktet alle requests til Flask app
 	reverse_proxy unix/app.sock
 
