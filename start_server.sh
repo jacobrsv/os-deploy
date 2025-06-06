@@ -7,4 +7,5 @@
 caddy run  &
 cd app
 .venv/bin/python app.py &
+chromium --incognito "http://osdeploy:8000" > /dev/null 2>&1 & 
 wait
