@@ -4,6 +4,7 @@
 ###                               OS-Deploy                                 ###
 ######                      Jacob Rusch Svendsen                         ######
 ###############################################################################
+journalctl _EXE=/usr/bin/dnsmasq -f &
 caddy run  &
 cd app
 .venv/bin/python app.py &
